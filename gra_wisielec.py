@@ -1,11 +1,10 @@
 import sys
+import random
 hp = 5
-word = "dupa"
 user_word = []
 user_letters = []
-test_string = "";
-for _ in word:
-    user_word.append("_")
+txt_string = []
+
 
 def find_indexes(word, letter):
     indexes = []
@@ -21,9 +20,18 @@ def stastus_geme():
     print(user_word)
     print()
 
+file = open("word.txt")
+for line in file.readlines():
+    txt_string.append(line.strip())
+
+print(txt_string)
+
+word = txt_string[random.randint(0,len(txt_string))]
+txt_string.remove(word)
+for _ in word:
+    user_word.append("_")
 
 print(user_word)
-
 while hp > 0 :
 
     letter = input("Podaj litere: ")
@@ -41,7 +49,9 @@ while hp > 0 :
         for x in tab:
             user_word[x]=letter
             if "".join(user_word)==word:
+                print(word)
                 print("WIN GAME")
+                print(txt_string)
                 sys.exit(0)
     stastus_geme()
 
